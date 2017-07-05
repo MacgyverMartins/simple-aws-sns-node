@@ -1,4 +1,5 @@
 var AWS = require('aws-sdk');
+
 AWS.config.update({
   accessKeyId: 'xxxx',
   secretAccessKey: 'xxxx/xxxx',
@@ -10,10 +11,11 @@ var snsClient = new AWS.SNS();
 var list = [
   {
     name: 'macgyver',
-    phone: '556799999999'
-  },{
+    phone: '556000000000'
+  },
+  {
     name: 'joao',
-    phone: '09090909090'
+    phone: '556000000000'
   }
 ]
 
@@ -23,7 +25,14 @@ list.forEach((value, key) => {
     PhoneNumber: value.phone
   }
     console.log('a mensagem seria', obj.Message)
-    snsClient.publish(obj, function (err, data) {})
+    snsClient.publish(obj, function (err, data) {
+      console.log('---------------------------------------');
+      if (err) {
+        console.log('ERR', err);
+      } else {
+        console.log('SUCCESS', data);
+      }
+    })
 })
 
 
